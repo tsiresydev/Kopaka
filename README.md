@@ -13,6 +13,9 @@ Statut : base de référence pour le cadrage et le démarrage du développement.
 - Stack : Next.js + TypeScript pour le web ; Node.js avec NestJS pour l'API ; Socket.IO pour le temps réel ; PostgreSQL/Prisma ; Redis.
 
 ## Contenu
+- `design-system/kopaka/MASTER.md` : Design System officiel, thèmes clair/sombre et règles de conception.
+- `design-system/kopaka/preview.html` : catalogue visuel autonome à ouvrir dans un navigateur.
+- `design-system/kopaka/tokens.css` : tokens CSS de marque, de thème et de composants.
 - `CAHIER_DES_CHARGES.md` : cahier des charges fonctionnel et technique.
 - `constitution.md` : principes non négociables du projet.
 - `specs/001-platforme-kopaka.md` : spécification produit et exigences.
