@@ -93,3 +93,5 @@ Les signatures définitives peuvent être adaptées à la stack, mais le moteur 
 
 ## Dépendance bloquante
 Aucun moteur Domino ne doit être considéré terminé tant que les règles des deux modes ne sont pas validées par le propriétaire du produit.
+
+

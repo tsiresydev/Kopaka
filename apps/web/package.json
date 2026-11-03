@@ -1,0 +1,23 @@
+{
+  "name": "@kopaka/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node ../../scripts/workspace.mjs build @kopaka/web",
+    "compile": "next build",
+    "dev": "node ../../scripts/workspace.mjs dev @kopaka/web",
+    "start": "next start --hostname 127.0.0.1 --port 3000",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@kopaka/ui": "workspace:*",
+    "@kopaka/validation": "workspace:*",
+    "next": "16.4.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.4",
+    "tailwindcss": "4.3.4"
+  }
+}

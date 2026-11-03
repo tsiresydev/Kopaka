@@ -1,0 +1,58 @@
+{
+  "metadataTitle": "Kopaka — Fondations",
+  "skip": "Aller au contenu",
+  "title": "Page de fondation",
+  "intro": "Les bases de Kopaka : une interface lisible et un accès clair à la disponibilité du service.",
+  "notice": "Démonstration du socle technique. Aucun compte, partie ou joueur n’est créé.",
+  "language": {
+    "label": "Langue",
+    "french": "Français",
+    "malagasy": "Malagasy"
+  },
+  "theme": {
+    "label": "Apparence",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "service": {
+    "title": "Disponibilité réelle",
+    "description": "État actuel du service, vérifié à votre demande.",
+    "loading": "Vérification en cours…",
+    "available": "Disponible",
+    "unavailable": "Indisponible",
+    "recovery": "Le service ne répond pas correctement. Vous pouvez réessayer.",
+    "retry": "Réessayer"
+  },
+  "demos": {
+    "title": "Exemples de composants",
+    "description": "Ces états illustrent l’interface et ne décrivent pas la disponibilité réelle.",
+    "buttons": "Boutons",
+    "primary": "Action principale",
+    "secondary": "Action secondaire",
+    "disabled": "Action indisponible",
+    "fields": "Champs",
+    "label": "Champ de démonstration",
+    "help": "Texte libre conservé pendant votre visite, sans envoi.",
+    "errorLabel": "Champ avec erreur",
+    "error": "Exemple d’erreur : vérifiez cette valeur.",
+    "select": "Sélecteur",
+    "choice": "Exemple de choix",
+    "placeholder": "Choisir un exemple",
+    "option": "Premier exemple",
+    "card": "Carte",
+    "cardTitle": "Une information claire",
+    "cardBody": "Un espace pour présenter un contenu utile.",
+    "states": "Exemples d’états",
+    "loading": "Chargement",
+    "empty": "Aucun élément",
+    "failure": "Erreur de démonstration",
+    "success": "Succès de démonstration",
+    "inactive": "État désactivé"
+  },
+  "error": {
+    "title": "La page n’a pas pu s’afficher",
+    "message": "Une erreur est survenue. Essayez de recharger cette page.",
+    "retry": "Réessayer"
+  }
+}

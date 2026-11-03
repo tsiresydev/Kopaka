@@ -1,0 +1,11 @@
+generator client {
+ provider = "prisma-client-js"
+}
+datasource db {
+ provider = "postgresql"
+}
+model PlatformBootstrap {
+ id String @id @db.VarChar(8)
+ schemaVersion Int
+ initializedAt DateTime @db.Timestamptz(3)
+}

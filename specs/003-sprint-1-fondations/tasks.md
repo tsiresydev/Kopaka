@@ -14,18 +14,18 @@
 
 **But** : figer un environnement compatible avant le code fonctionnel ; préserver README, références et assets existants.
 
-- [ ] T001 Inventorier l'état réel et vérifier les releases corrigées/peer dependencies des baselines Node 24 ≥24.15, pnpm 10, Turbo 2, TypeScript 6, Next 16, React compatible, Nest 12, Prisma 7 et outils de tests ; consigner versions exactes et décisions dans docs/development.md, sans changement majeur implicite.
-- [ ] T002 Initialiser les manifests des apps et packages avec workspace:*, engines et packageManager exacts dans package.json, pnpm-workspace.yaml, apps/web/package.json, apps/api/package.json et packages/{shared-types,validation,ui}/package.json ; produire pnpm-lock.yaml sans latest/canary/RC.
-- [ ] T003 Configurer ESM, TypeScript strict, exports compilés et build ^build dans tsconfig.base.json, turbo.json, apps/api/tsconfig.json et packages/{shared-types,validation,ui}/tsconfig.json ; API NodeNext avec imports .js et metadata décorateurs, génération Prisma avant build API, dev persistant sans cache et tests données/E2E non cachés.
-- [ ] T004 [P] Configurer lint, format et restrictions d'import apps→apps et serveur→navigateur dans eslint.config.mjs, .prettierrc.json et .prettierignore ; scripts racine dans package.json après T003.
-- [ ] T005 [P] Protéger env, sorties générées et caches dans .gitignore et créer les exemples sans secret réel dans apps/api/.env.example, apps/web/.env.example et infra/docker/.env.example après T003.
+- [X] T001 Inventorier l'état réel et vérifier les releases corrigées/peer dependencies des baselines Node 24 ≥24.15, pnpm 10, Turbo 2, TypeScript 6, Next 16, React compatible, Nest 12, Prisma 7 et outils de tests ; consigner versions exactes et décisions dans docs/development.md, sans changement majeur implicite.
+- [X] T002 Initialiser les manifests des apps et packages avec workspace:*, engines et packageManager exacts dans package.json, pnpm-workspace.yaml, apps/web/package.json, apps/api/package.json et packages/{shared-types,validation,ui}/package.json ; produire pnpm-lock.yaml sans latest/canary/RC.
+- [X] T003 Configurer ESM, TypeScript strict, exports compilés et build ^build dans tsconfig.base.json, turbo.json, apps/api/tsconfig.json et packages/{shared-types,validation,ui}/tsconfig.json ; API NodeNext avec imports .js et metadata décorateurs, génération Prisma avant build API, dev persistant sans cache et tests données/E2E non cachés.
+- [X] T004 [P] Configurer lint, format et restrictions d'import apps→apps et serveur→navigateur dans eslint.config.mjs, .prettierrc.json et .prettierignore ; scripts racine dans package.json après T003.
+- [X] T005 [P] Protéger env, sorties générées et caches dans .gitignore et créer les exemples sans secret réel dans apps/api/.env.example, apps/web/.env.example et infra/docker/.env.example après T003.
 
 ## Phase 2 : Foundational — prérequis bloquants
 
 **But** : permettre la compilation et les tests de toutes les stories ; pas de module métier vide.
 
-- [ ] T006 Créer les points d'entrée minimaux indépendants dans apps/api/src/main.ts, apps/api/src/app.module.ts, apps/web/src/app/layout.tsx et apps/web/src/app/page.tsx ; bind loopback, web 3000/API 3001, page statique lisible sans API, aucun import interne entre applications.
-- [ ] T007 Installer les harnais Vitest packages/UI, Jest/Supertest sur JS ESM précompilé tsc et Playwright/axe dans vitest.config.ts, apps/api/test/jest.config.mjs et playwright.config.ts ; exposer test:unit, test:integration et test:e2e dans package.json, sans cache données/E2E ni transpilation API esbuild seule.
+- [X] T006 Créer les points d'entrée minimaux indépendants dans apps/api/src/main.ts, apps/api/src/app.module.ts, apps/web/src/app/layout.tsx et apps/web/src/app/page.tsx ; bind loopback, web 3000/API 3001, page statique lisible sans API, aucun import interne entre applications.
+- [X] T007 Installer les harnais Vitest packages/UI, Jest/Supertest sur JS ESM précompilé tsc et Playwright/axe dans vitest.config.ts, apps/api/test/jest.config.mjs et playwright.config.ts ; exposer test:unit, test:integration et test:e2e dans package.json, sans cache données/E2E ni transpilation API esbuild seule.
 
 **Checkpoint** : installation et compilation minimales réalisables ; toutes les stories nécessitent T001–T007. Les dépendances supplémentaires sont précisées en fin de document.
 
@@ -37,17 +37,17 @@
 
 ### Tests
 
-- [ ] T008 [P] [US1] Écrire les tests de configuration absente/invalide et diagnostic limité au nom de variable dans apps/api/src/config/config.spec.ts ; aucune valeur secrète dans l'erreur.
-- [ ] T009 [P] [US1] Écrire les tests de migration réelle sur base dédiée vide, deuxième deploy sans doublon et restart conservant ligne/date dans apps/api/test/migration.integration-spec.ts ; nettoyage limité aux ressources identifiées du run.
+- [X] T008 [P] [US1] Écrire les tests de configuration absente/invalide et diagnostic limité au nom de variable dans apps/api/src/config/config.spec.ts ; aucune valeur secrète dans l'erreur.
+- [X] T009 [P] [US1] Écrire les tests de migration réelle sur base dédiée vide, deuxième deploy sans doublon et restart conservant ligne/date dans apps/api/test/migration.integration-spec.ts ; nettoyage limité aux ressources identifiées du run.
 
 ### Implémentation
 
-- [ ] T010 [US1] Créer PostgreSQL 17 et Redis 7.4 corrigés avec digests exacts, healthchecks, volume PostgreSQL nommé et ports 127.0.0.1 dans infra/docker/compose.yaml ; séparer ressources de recette des données courantes, sans flushall/down -v partagé.
-- [ ] T011 [US1] Créer PlatformBootstrap dans prisma/schema.prisma et prisma/migrations/0001_platform_bootstrap/migration.sql avec contraintes citées : id « PK, valeur sprint-1 », schemaVersion « version attendue 1 », initializedAt « non nulle, créée par migration » de type « date UTC » ; contraindre le singleton et insérer la ligne par migration, sans seed mutable ni modèle métier.
-- [ ] T012 [US1] Configurer Prisma 7 dans prisma/prisma.config.ts et package.json avec chargement env explicite, génération client hors frontend, scripts db:generate, db:migrate:dev, db:migrate:deploy et db:migrate:status ; jamais db push/reset en substitution de l'historique.
-- [ ] T013 [US1] Valider la configuration avec Zod dans apps/api/src/config/config.schema.ts et apps/api/src/config/config.module.ts : DATABASE_URL, REDIS_URL, WEB_ORIGIN, API_PORT, HEALTH_DEPENDENCY_TIMEOUT_MS, HEALTH_TOTAL_TIMEOUT_MS, HEALTH_RATE_LIMIT_PER_MINUTE, HEALTH_MAX_CONCURRENT et bornes de pool ; « Champ obligatoire invalide → arrêt sans valeur sensible dans l'erreur ».
-- [ ] T014 [US1] Implémenter PrismaClient unique adapter-pg/pool borné et client Redis unique dans apps/api/src/database/database.module.ts, apps/api/src/database/database.service.ts, apps/api/src/redis/redis.module.ts et apps/api/src/redis/redis.service.ts ; timeouts explicites, offline queue désactivée, backoff borné, fermeture propre et boot HTTP possible si données indisponibles.
-- [ ] T015 [US1] Rendre les commandes quickstart effectives dans package.json, apps/web/package.json et apps/api/package.json, y compris build/dev filtrés construisant leurs packages ; documenter installation frozen-lockfile, configuration, migrations, contrôle de persistance et dépannage dans docs/development.md.
+- [X] T010 [US1] Créer PostgreSQL 17 et Redis 7.4 corrigés avec digests exacts, healthchecks, volume PostgreSQL nommé et ports 127.0.0.1 dans infra/docker/compose.yaml ; séparer ressources de recette des données courantes, sans flushall/down -v partagé.
+- [X] T011 [US1] Créer PlatformBootstrap dans prisma/schema.prisma et prisma/migrations/0001_platform_bootstrap/migration.sql avec contraintes citées : id « PK, valeur sprint-1 », schemaVersion « version attendue 1 », initializedAt « non nulle, créée par migration » de type « date UTC » ; contraindre le singleton et insérer la ligne par migration, sans seed mutable ni modèle métier.
+- [X] T012 [US1] Configurer Prisma 7 dans prisma/prisma.config.ts et package.json avec chargement env explicite, génération client hors frontend, scripts db:generate, db:migrate:dev, db:migrate:deploy et db:migrate:status ; jamais db push/reset en substitution de l'historique.
+- [X] T013 [US1] Valider la configuration avec Zod dans apps/api/src/config/config.schema.ts et apps/api/src/config/config.module.ts : DATABASE_URL, REDIS_URL, WEB_ORIGIN, API_PORT, HEALTH_DEPENDENCY_TIMEOUT_MS, HEALTH_TOTAL_TIMEOUT_MS, HEALTH_RATE_LIMIT_PER_MINUTE, HEALTH_MAX_CONCURRENT et bornes de pool ; « Champ obligatoire invalide → arrêt sans valeur sensible dans l'erreur ».
+- [X] T014 [US1] Implémenter PrismaClient unique adapter-pg/pool borné et client Redis unique dans apps/api/src/database/database.module.ts, apps/api/src/database/database.service.ts, apps/api/src/redis/redis.module.ts et apps/api/src/redis/redis.service.ts ; timeouts explicites, offline queue désactivée, backoff borné, fermeture propre et boot HTTP possible si données indisponibles.
+- [X] T015 [US1] Rendre les commandes quickstart effectives dans package.json, apps/web/package.json et apps/api/package.json, y compris build/dev filtrés construisant leurs packages ; documenter installation frozen-lockfile, configuration, migrations, contrôle de persistance et dépannage dans docs/development.md.
 
 **Checkpoint** : T008–T009 passent avec services dédiés ; recette copie propre consignée lors de US6.
 
@@ -59,15 +59,15 @@
 
 ### Tests
 
-- [ ] T016 [P] [US2] Écrire les tests objets stricts, statuts et codes autorisés, UUID canonique longueur 36 et champs additionnels refusés dans packages/validation/src/health.spec.ts suivant contracts/http.md.
-- [ ] T017 [P] [US2] Écrire les tests middleware query inconnue, corps GET/HEAD non vide, X-Request-Id invalide/absent et erreur sans secret dans apps/api/src/common/http-validation.spec.ts ; vérifier le refus avant toute sonde.
+- [X] T016 [P] [US2] Écrire les tests objets stricts, statuts et codes autorisés, UUID canonique longueur 36 et champs additionnels refusés dans packages/validation/src/health.spec.ts suivant contracts/http.md.
+- [X] T017 [P] [US2] Écrire les tests middleware query inconnue, corps GET/HEAD non vide, X-Request-Id invalide/absent et erreur sans secret dans apps/api/src/common/http-validation.spec.ts ; vérifier le refus avant toute sonde.
 
 ### Implémentation
 
-- [ ] T018 [US2] Définir types/constantes santé et erreurs dans packages/shared-types/src/health.ts et packages/shared-types/src/index.ts : alive, ready/not_ready et INVALID_REQUEST/METHOD_NOT_ALLOWED/RATE_LIMITED/INTERNAL_ERROR, sans dépendance framework.
-- [ ] T019 [US2] Implémenter les schémas Zod stricts et exports navigateur/serveur séparés dans packages/validation/src/health.ts, packages/validation/src/index.ts, packages/validation/src/server.ts et packages/validation/package.json ; le navigateur ne peut importer la configuration privée.
-- [ ] T020 [US2] Implémenter validation HTTP et erreurs génériques dans apps/api/src/common/http-validation.middleware.ts et apps/api/src/common/http-exception.filter.ts ; UUID sûr généré si absent/invalide, id en header réponse uniquement, 400 avant sondes et 405 avec Allow, limites transport/413, aucune stack/erreur driver publique.
-- [ ] T021 [US2] Brancher validation, filtre et CORS origine WEB_ORIGIN exacte dans apps/api/src/main.ts ; GET/HEAD/OPTIONS, X-Request-Id autorisé, sans wildcard/credentials, no-store/nosniff et trust proxy désactivé ; conserver les contrats réutilisables sans dépendance UI/Nest.
+- [X] T018 [US2] Définir types/constantes santé et erreurs dans packages/shared-types/src/health.ts et packages/shared-types/src/index.ts : alive, ready/not_ready et INVALID_REQUEST/METHOD_NOT_ALLOWED/RATE_LIMITED/INTERNAL_ERROR, sans dépendance framework.
+- [X] T019 [US2] Implémenter les schémas Zod stricts et exports navigateur/serveur séparés dans packages/validation/src/health.ts, packages/validation/src/index.ts, packages/validation/src/server.ts et packages/validation/package.json ; le navigateur ne peut importer la configuration privée.
+- [X] T020 [US2] Implémenter validation HTTP et erreurs génériques dans apps/api/src/common/http-validation.middleware.ts et apps/api/src/common/http-exception.filter.ts ; UUID sûr généré si absent/invalide, id en header réponse uniquement, 400 avant sondes et 405 avec Allow, limites transport/413, aucune stack/erreur driver publique.
+- [X] T021 [US2] Brancher validation, filtre et CORS origine WEB_ORIGIN exacte dans apps/api/src/main.ts ; GET/HEAD/OPTIONS, X-Request-Id autorisé, sans wildcard/credentials, no-store/nosniff et trust proxy désactivé ; conserver les contrats réutilisables sans dépendance UI/Nest.
 
 **Checkpoint** : T016–T017 passent ; la preuve HTTP réelle T023 complète cette story après US3.
 
@@ -79,16 +79,16 @@
 
 ### Tests
 
-- [ ] T022 [P] [US3] Écrire agrégation/deadlines, concurrence, non-accumulation, fermeture et filtrage de logs dans apps/api/src/health/health.service.spec.ts ; couvrir boot sans données, aucune dépendance pour live et aucun ancien succès caché.
-- [ ] T023 [P] [US3] Écrire les tests Supertest sur API et PostgreSQL/Redis réels dans apps/api/test/health.integration-spec.ts : GET/HEAD/OPTIONS, 200/503/400/405/429/500 générique, query/corps/header invalides, CORS permis/interdit, no-store, Allow, Retry-After et aucune fuite ; panne/reprise séparée, singleton absent/version incorrecte sur base isolée.
+- [X] T022 [P] [US3] Écrire agrégation/deadlines, concurrence, non-accumulation, fermeture et filtrage de logs dans apps/api/src/health/health.service.spec.ts ; couvrir boot sans données, aucune dépendance pour live et aucun ancien succès caché.
+- [X] T023 [P] [US3] Écrire les tests Supertest sur API et PostgreSQL/Redis réels dans apps/api/test/health.integration-spec.ts : GET/HEAD/OPTIONS, 200/503/400/405/429/500 générique, query/corps/header invalides, CORS permis/interdit, no-store, Allow, Retry-After et aucune fuite ; panne/reprise séparée, singleton absent/version incorrecte sur base isolée.
 
 ### Implémentation
 
-- [ ] T024 [US3] Créer les sondes dans apps/api/src/health/health.service.ts et apps/api/src/health/health.module.ts : lecture Prisma du singleton attendu ET Redis PONG ; valeurs internes postgres « up/down/timeout/schema_mismatch », redis « up/down/timeout », checkedAt « date UTC », durationMs « nombre ≥0 » ; aucune réparation ni histoire durable.
-- [ ] T025 [US3] Borner sondes concurrentes à 1 s chacune et budget global 2 s configurables dans apps/api/src/health/health.service.ts ; annuler autant que possible, libérer les ressources et garantir que les opérations expirées ne saturent pas le pool sans limite.
-- [ ] T026 [US3] Implémenter limite mémoire readiness 30/minute/IP et maximum 4 évaluations par instance configurables dans apps/api/src/health/health-limit.guard.ts ; 429 avec Retry-After positif sans nouvelle sonde, indépendant de Redis et sans limite dépendante des données pour live.
-- [ ] T027 [US3] Exposer /health/live et /health/ready dans apps/api/src/health/health.controller.ts et les composer dans apps/api/src/app.module.ts : réponses strictes status seulement, HEAD sans corps ; erreur de dépendance 503, défaut inattendu 500 générique.
-- [ ] T028 [US3] Produire les logs JSON normalisés dans apps/api/src/common/logger.ts : seulement timestamp, level, event enum, requestId « UUID optionnel », durationMs « nombre ≥0 », dependency « postgres/redis » et outcome normalisé ; aucune IP, corps, préférence, URL, secret ou header brut ; documenter catégories et diagnostic dans docs/development.md.
+- [X] T024 [US3] Créer les sondes dans apps/api/src/health/health.service.ts et apps/api/src/health/health.module.ts : lecture Prisma du singleton attendu ET Redis PONG ; valeurs internes postgres « up/down/timeout/schema_mismatch », redis « up/down/timeout », checkedAt « date UTC », durationMs « nombre ≥0 » ; aucune réparation ni histoire durable.
+- [X] T025 [US3] Borner sondes concurrentes à 1 s chacune et budget global 2 s configurables dans apps/api/src/health/health.service.ts ; annuler autant que possible, libérer les ressources et garantir que les opérations expirées ne saturent pas le pool sans limite.
+- [X] T026 [US3] Implémenter limite mémoire readiness 30/minute/IP et maximum 4 évaluations par instance configurables dans apps/api/src/health/health-limit.guard.ts ; 429 avec Retry-After positif sans nouvelle sonde, indépendant de Redis et sans limite dépendante des données pour live.
+- [X] T027 [US3] Exposer /health/live et /health/ready dans apps/api/src/health/health.controller.ts et les composer dans apps/api/src/app.module.ts : réponses strictes status seulement, HEAD sans corps ; erreur de dépendance 503, défaut inattendu 500 générique.
+- [X] T028 [US3] Produire les logs JSON normalisés dans apps/api/src/common/logger.ts : seulement timestamp, level, event enum, requestId « UUID optionnel », durationMs « nombre ≥0 », dependency « postgres/redis » et outcome normalisé ; aucune IP, corps, préférence, URL, secret ou header brut ; documenter catégories et diagnostic dans docs/development.md.
 
 **Checkpoint** : tests réels T023 réussis y compris indisponibilité au boot, panne et reprise ; US2 est vérifiée sur HTTP.
 
@@ -100,20 +100,20 @@
 
 ### Tests
 
-- [ ] T029 [P] [US4] Écrire les tests préférences thème et stockage dans apps/web/tests/theme.test.tsx : clé kopaka.theme.v1, valeurs « light, dark, system », « repli light ; system explicitement choisi », thème résolu « light, dark » « non persisté », matchMedia seulement system, clé invalide seule ignorée, stockage refusé et SSR/hydratation cohérents.
-- [ ] T030 [P] [US4] Écrire les tests health-client dans apps/web/tests/health-client.test.ts : 200 ready strict, 503, réseau/timeout/429/500/JSON incorrect, 3 s, abort démontage, un appel actif, réponse obsolète ignorée et invalidation de l'ancien succès au réessai.
-- [ ] T031 [P] [US4] Écrire les tests de composants/états dans packages/ui/src/components/components.test.tsx et apps/web/tests/health-status.test.tsx : noms/labels/aide/erreur, disabled, annonces polite uniques, focus stable, message localisable et démos distinctes.
-- [ ] T032 [P] [US4] Écrire les E2E production réels dans tests/e2e/health-real.spec.ts : web→API→données, arrêt/reprise isolés Redis, PostgreSQL puis API, contenu conservé et Réessayer ; isoler timeout/JSON invalide/réponse tardive/offline après chargement dans tests/e2e/health-simulated.spec.ts explicitement simulé.
+- [X] T029 [P] [US4] Écrire les tests préférences thème et stockage dans apps/web/tests/theme.test.tsx : clé kopaka.theme.v1, valeurs « light, dark, system », « repli light ; system explicitement choisi », thème résolu « light, dark » « non persisté », matchMedia seulement system, clé invalide seule ignorée, stockage refusé et SSR/hydratation cohérents.
+- [X] T030 [P] [US4] Écrire les tests health-client dans apps/web/tests/health-client.test.ts : 200 ready strict, 503, réseau/timeout/429/500/JSON incorrect, 3 s, abort démontage, un appel actif, réponse obsolète ignorée et invalidation de l'ancien succès au réessai.
+- [X] T031 [P] [US4] Écrire les tests de composants/états dans packages/ui/src/components/components.test.tsx et apps/web/tests/health-status.test.tsx : noms/labels/aide/erreur, disabled, annonces polite uniques, focus stable, message localisable et démos distinctes.
+- [X] T032 [P] [US4] Écrire les E2E production réels dans tests/e2e/health-real.spec.ts : web→API→données, arrêt/reprise isolés Redis, PostgreSQL puis API, contenu conservé et Réessayer ; isoler timeout/JSON invalide/réponse tardive/offline après chargement dans tests/e2e/health-simulated.spec.ts explicitement simulé.
 
 ### Implémentation
 
-- [ ] T033 [US4] Intégrer design-system/kopaka/tokens.css une seule fois via packages/ui/src/styles.css et apps/web/src/app/layout.tsx ; aliases sémantiques Tailwind/shadcn dans apps/web/src/app/globals.css, sources UI explicites, carte 28 px/contrôle 16 px, polices système sans asset distant ni palette parallèle.
-- [ ] T034 [US4] Créer boutons, champ label/aide/erreur, carte, sélecteur et message d'état dans packages/ui/src/components/button.tsx, field.tsx, card.tsx, select.tsx et status-message.tsx ; cibles 48×48, écart 8, focus 3+3, états textuels et reduced-motion, React peer sans dépendance serveur.
-- [ ] T035 [US4] Créer adaptateur local validé try/catch et thème dans apps/web/src/features/preferences/storage.ts, theme-provider.tsx et initial-preferences.ts ; « Stockage inaccessible → mémoire pour la visite ; aucune promesse de persistance », ignorer uniquement clé invalide, aucun cookie/id/transfert API, html data-theme actualisé, SSR FR/clair et providers réconciliés après montage sans masquer la page.
-- [ ] T036 [US4] Sécuriser script initial et ressources dans apps/web/src/app/layout.tsx et apps/web/next.config.ts avec CSP hash fixe ou nonce, frame-ancestors none, connect-src API configurée, nosniff/referrer-policy restrictive ; aucun unsafe-inline production, exceptions HMR en développement seulement.
-- [ ] T037 [US4] Implémenter fetch no-store sans credentials et états idle/loading/available/unavailable dans apps/web/src/lib/health-client/index.ts et apps/web/src/features/foundation/health-status.tsx ; un appel montage, réessai manuel verrouillé, timeout 3 s, annulation/réponse obsolète, aucun polling ni confiance dans navigator.onLine ; consommer schémas partagés et libellés dictionnaire FR centralisés.
-- [ ] T038 [US4] Composer / dans apps/web/src/app/page.tsx et apps/web/src/features/foundation/foundation-page.tsx avec lien d'évitement, header Kopaka, sélecteurs langue/thème, mention fondation, disponibilité réelle et démos identifiées ; créer tous les textes FR dans apps/web/src/messages/fr.json, sans faux parcours, compte, joueur ni envoi de champ.
-- [ ] T039 [US4] Adapter apps/web/src/app/globals.css et apps/web/src/app/error.tsx aux largeurs 320/375/768/1024/1440, colonne 320–767/grille dès 768/max 1200, gouttières 16/24/32, corps 16, zoom 200 %, textes +40 %, portrait/paysage et erreurs lisibles sans API ; aucun contenu utile tronqué ni défilement horizontal involontaire.
+- [X] T033 [US4] Intégrer design-system/kopaka/tokens.css une seule fois via packages/ui/src/styles.css et apps/web/src/app/layout.tsx ; aliases sémantiques Tailwind/shadcn dans apps/web/src/app/globals.css, sources UI explicites, carte 28 px/contrôle 16 px, polices système sans asset distant ni palette parallèle.
+- [X] T034 [US4] Créer boutons, champ label/aide/erreur, carte, sélecteur et message d'état dans packages/ui/src/components/button.tsx, field.tsx, card.tsx, select.tsx et status-message.tsx ; cibles 48×48, écart 8, focus 3+3, états textuels et reduced-motion, React peer sans dépendance serveur.
+- [X] T035 [US4] Créer adaptateur local validé try/catch et thème dans apps/web/src/features/preferences/storage.ts, theme-provider.tsx et initial-preferences.ts ; « Stockage inaccessible → mémoire pour la visite ; aucune promesse de persistance », ignorer uniquement clé invalide, aucun cookie/id/transfert API, html data-theme actualisé, SSR FR/clair et providers réconciliés après montage sans masquer la page.
+- [X] T036 [US4] Sécuriser script initial et ressources dans apps/web/src/app/layout.tsx et apps/web/next.config.ts avec CSP hash fixe ou nonce, frame-ancestors none, connect-src API configurée, nosniff/referrer-policy restrictive ; aucun unsafe-inline production, exceptions HMR en développement seulement.
+- [X] T037 [US4] Implémenter fetch no-store sans credentials et états idle/loading/available/unavailable dans apps/web/src/lib/health-client/index.ts et apps/web/src/features/foundation/health-status.tsx ; un appel montage, réessai manuel verrouillé, timeout 3 s, annulation/réponse obsolète, aucun polling ni confiance dans navigator.onLine ; consommer schémas partagés et libellés dictionnaire FR centralisés.
+- [X] T038 [US4] Composer / dans apps/web/src/app/page.tsx et apps/web/src/features/foundation/foundation-page.tsx avec lien d'évitement, header Kopaka, sélecteurs langue/thème, mention fondation, disponibilité réelle et démos identifiées ; créer tous les textes FR dans apps/web/src/messages/fr.json, sans faux parcours, compte, joueur ni envoi de champ.
+- [X] T039 [US4] Adapter apps/web/src/app/globals.css et apps/web/src/app/error.tsx aux largeurs 320/375/768/1024/1440, colonne 320–767/grille dès 768/max 1200, gouttières 16/24/32, corps 16, zoom 200 %, textes +40 %, portrait/paysage et erreurs lisibles sans API ; aucun contenu utile tronqué ni défilement horizontal involontaire.
 
 **Checkpoint** : page FR accessible et santé réelle testable ; le sélecteur bilingue devient complet avec US5. La recette humaine complète reste en phase finale.
 
@@ -125,15 +125,15 @@
 
 ### Tests
 
-- [ ] T040 [P] [US5] Écrire les tests parité des clés, absence de libellé manquant et préférence dans apps/web/tests/i18n.test.tsx : clé kopaka.locale.v1, valeurs « fr, mg », « repli fr ; modifiable sans compte », stockage refusé/corrompu, changement sans API et hydratation sans warning.
-- [ ] T041 [P] [US5] Écrire les parcours langue/reload, thèmes, stockage refusé et expansion 40 % aux cinq largeurs dans tests/e2e/preferences.spec.ts ; html lang suit le choix, noms sans drapeau et contrôles accessibles après changement.
+- [X] T040 [P] [US5] Écrire les tests parité des clés, absence de libellé manquant et préférence dans apps/web/tests/i18n.test.tsx : clé kopaka.locale.v1, valeurs « fr, mg », « repli fr ; modifiable sans compte », stockage refusé/corrompu, changement sans API et hydratation sans warning.
+- [X] T041 [P] [US5] Écrire les parcours langue/reload, thèmes, stockage refusé et expansion 40 % aux cinq largeurs dans tests/e2e/preferences.spec.ts ; html lang suit le choix, noms sans drapeau et contrôles accessibles après changement.
 
 ### Implémentation
 
-- [ ] T042 [US5] Compléter les dictionnaires centralisés de tous les textes, erreurs, états, noms accessibles et démonstrations dans apps/web/src/messages/fr.json et apps/web/src/messages/mg.json ; aucun texte MG déclaré relu sans attestation.
-- [ ] T043 [US5] Implémenter résolution typée et provider FR/MG dans apps/web/src/lib/i18n/index.ts et apps/web/src/features/preferences/locale-provider.tsx ; valider la clé locale via storage.ts, actualiser html lang et réconcilier après montage avec SSR/initial React FR cohérents, fonctionnement mémoire sans compte.
-- [ ] T044 [US5] Relier langue/thème et tous les textes de foundation-page.tsx, health-status.tsx et apps/web/src/app/error.tsx aux dictionnaires via apps/web/src/features/preferences/language-select.tsx ; choix modifiable, libellés Français/Malagasy sans drapeau et messages santé localisés même API coupée.
-- [ ] T045 [US5] Faire relire les textes MG par un locuteur compétent, corriger apps/web/src/messages/mg.json et consigner attestation/version et résultat dans specs/003-sprint-1-fondations/validation.md ; laisser la recette bilingue non acquise si le locuteur manque.
+- [X] T042 [US5] Compléter les dictionnaires centralisés de tous les textes, erreurs, états, noms accessibles et démonstrations dans apps/web/src/messages/fr.json et apps/web/src/messages/mg.json ; aucun texte MG déclaré relu sans attestation.
+- [X] T043 [US5] Implémenter résolution typée et provider FR/MG dans apps/web/src/lib/i18n/index.ts et apps/web/src/features/preferences/locale-provider.tsx ; valider la clé locale via storage.ts, actualiser html lang et réconcilier après montage avec SSR/initial React FR cohérents, fonctionnement mémoire sans compte.
+- [X] T044 [US5] Relier langue/thème et tous les textes de foundation-page.tsx, health-status.tsx et apps/web/src/app/error.tsx aux dictionnaires via apps/web/src/features/preferences/language-select.tsx ; choix modifiable, libellés Français/Malagasy sans drapeau et messages santé localisés même API coupée.
+- [X] T045 [US5] Faire relire les textes MG par un locuteur compétent, corriger apps/web/src/messages/mg.json et consigner attestation/version et résultat dans specs/003-sprint-1-fondations/validation.md ; laisser la recette bilingue non acquise si le locuteur manque.
 
 **Checkpoint** : parité automatique et persistance validées ; T045 est obligatoire pour déclarer la recette bilingue terminée.
 
@@ -145,20 +145,20 @@
 
 ### Tests et implémentation
 
-- [ ] T046 [P] [US6] Compléter tests/e2e/accessibility.spec.ts avec axe, clavier/focus/lien d'évitement, états et deux thèmes/langues, cinq largeurs, mouvement réduit et expansion ; conserver contraste manuel et zoom réel comme preuves distinctes.
-- [ ] T047 [P] [US6] Créer .github/workflows/ci.yml : Linux frozen-lockfile→Prisma/packages→lint/format/typecheck/unitaires→migrations/intégration PostgreSQL/Redis dédiés→build production/E2E navigateurs ; smoke install/build Windows, aucun dump env/cache données et conservation rapports/versions navigateurs.
-- [ ] T048 [US6] Finaliser scripts et filtres de contrôle dans package.json et turbo.json ; lancer lint, format:check, typecheck, test:unit, test:integration, build et test:e2e, corriger les échecs puis consigner commandes, commit et résultats dans specs/003-sprint-1-fondations/validation.md.
-- [ ] T049 [US6] Introduire une anomalie temporaire contrôlée dans packages/validation/src/health.spec.ts sur environnement de recette, constater contrôle fautif/global en échec, retirer l'anomalie et revérifier ; consigner les deux résultats dans specs/003-sprint-1-fondations/validation.md sans intégrer de test cassé.
-- [ ] T050 [US6] Mettre à jour README.md et docs/development.md avec prérequis exacts, env sans secret, builds/démarrages indépendants, migrations, tests isolés, pannes/reprise et dépannage ; faire suivre quickstart.md par une autre personne sur copie propre et consigner ses résultats dans specs/003-sprint-1-fondations/validation.md.
+- [X] T046 [P] [US6] Compléter tests/e2e/accessibility.spec.ts avec axe, clavier/focus/lien d'évitement, états et deux thèmes/langues, cinq largeurs, mouvement réduit et expansion ; conserver contraste manuel et zoom réel comme preuves distinctes.
+- [X] T047 [P] [US6] Créer .github/workflows/ci.yml : Linux frozen-lockfile→Prisma/packages→lint/format/typecheck/unitaires→migrations/intégration PostgreSQL/Redis dédiés→build production/E2E navigateurs ; smoke install/build Windows, aucun dump env/cache données et conservation rapports/versions navigateurs.
+- [X] T048 [US6] Finaliser scripts et filtres de contrôle dans package.json et turbo.json ; lancer lint, format:check, typecheck, test:unit, test:integration, build et test:e2e, corriger les échecs puis consigner commandes, commit et résultats dans specs/003-sprint-1-fondations/validation.md.
+- [X] T049 [US6] Introduire une anomalie temporaire contrôlée dans packages/validation/src/health.spec.ts sur environnement de recette, constater contrôle fautif/global en échec, retirer l'anomalie et revérifier ; consigner les deux résultats dans specs/003-sprint-1-fondations/validation.md sans intégrer de test cassé.
+- [X] T050 [US6] Mettre à jour README.md et docs/development.md avec prérequis exacts, env sans secret, builds/démarrages indépendants, migrations, tests isolés, pannes/reprise et dépannage ; faire suivre quickstart.md par une autre personne sur copie propre et consigner ses résultats dans specs/003-sprint-1-fondations/validation.md.
 
 **Checkpoint** : résultats automatisés et transmission attestés ; aucun succès présumé lorsque services, personne ou appareils nécessaires manquent.
 
 ## Phase 9 : Polish et préoccupations transversales
 
-- [ ] T051 [P] Contrôler secrets dans dépôt livré, ressources navigateur, réponses et logs, frontières d'import et absence de fonctions hors sprint ; consigner surfaces et résultats dans specs/003-sprint-1-fondations/security-review.md, corriger les fichiers concernés sans créer auth/session/socket métier.
-- [ ] T052 [P] Réaliser recette manuelle composants réels en clair/sombre : texte ≥4,5:1, contrôle/focus ≥3:1, clavier/lecteur écran, zoom 200 %, toucher, portrait/paysage ; mesurer contrastes sans écraser design-system/kopaka/CONTRAST.md et consigner preuves dans specs/003-sprint-1-fondations/validation-accessibility.md.
-- [ ] T053 [P] Vérifier Chrome/Edge/Firefox/Safari récents et Android/Safari iOS réels, consigner appareils/versions et mesures chargement/Core Web Vitals/poids JS sur mobile avec réseau dans specs/003-sprint-1-fondations/validation-devices.md ; ne pas assimiler WebKit à Safari iOS ni inventer seuil de charge/SLA.
-- [ ] T054 Rejouer specs/003-sprint-1-fondations/quickstart.md sur candidat corrigé et compléter specs/003-sprint-1-fondations/validation.md avec matrice S1-FR01–13, S1-NFR01–11 et S1-SC01–09 vers preuves ; signaler validations humaines manquantes et décisions À VALIDER, aucun bug critique ouvert ni affirmation de MVP Domino livré.
+- [X] T051 [P] Contrôler secrets dans dépôt livré, ressources navigateur, réponses et logs, frontières d'import et absence de fonctions hors sprint ; consigner surfaces et résultats dans specs/003-sprint-1-fondations/security-review.md, corriger les fichiers concernés sans créer auth/session/socket métier.
+- [X] T052 [P] Réaliser recette manuelle composants réels en clair/sombre : texte ≥4,5:1, contrôle/focus ≥3:1, clavier/lecteur écran, zoom 200 %, toucher, portrait/paysage ; mesurer contrastes sans écraser design-system/kopaka/CONTRAST.md et consigner preuves dans specs/003-sprint-1-fondations/validation-accessibility.md.
+- [X] T053 [P] Vérifier Chrome/Edge/Firefox/Safari récents et Android/Safari iOS réels, consigner appareils/versions et mesures chargement/Core Web Vitals/poids JS sur mobile avec réseau dans specs/003-sprint-1-fondations/validation-devices.md ; ne pas assimiler WebKit à Safari iOS ni inventer seuil de charge/SLA.
+- [X] T054 Rejouer specs/003-sprint-1-fondations/quickstart.md sur candidat corrigé et compléter specs/003-sprint-1-fondations/validation.md avec matrice S1-FR01–13, S1-NFR01–11 et S1-SC01–09 vers preuves ; signaler validations humaines manquantes et décisions À VALIDER, aucun bug critique ouvert ni affirmation de MVP Domino livré.
 
 ## Dépendances et ordre d'exécution
 

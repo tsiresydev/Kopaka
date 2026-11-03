@@ -1,0 +1,9 @@
+{
+  "fixtureOnly": true,
+  "approvedForProduction": false,
+  "approvalReference": "fixture-only:not-owner-approved",
+  "purpose": "Transport and validation fixtures only; no legal effect or approved moderation corpus.",
+  "documentsFile": "documents.json",
+  "moderationPolicyFile": "moderation-policy.json",
+  "counterexamplesFile": "counterexamples.json"
+}

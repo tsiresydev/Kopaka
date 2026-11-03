@@ -1,0 +1,53 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "tasks": {
+    "compile": {
+      "dependsOn": ["^compile"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^compile"],
+      "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": [
+        "DATABASE_URL",
+        "REDIS_URL",
+        "WEB_ORIGIN",
+        "API_PORT",
+        "HEALTH_*",
+        "PG_*",
+        "NEXT_PUBLIC_API_BASE_URL"
+      ]
+    },
+    "test:integration": {
+      "cache": false
+    },
+    "test:e2e": {
+      "cache": false
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:migrate:deploy": {
+      "cache": false
+    },
+    "@kopaka/api#compile": {
+      "dependsOn": ["^compile"],
+      "cache": false,
+      "outputs": ["dist/**"]
+    },
+    "@kopaka/web#compile": {
+      "dependsOn": ["^compile"],
+      "env": ["NEXT_PUBLIC_API_BASE_URL", "KOPAKA_E2E_BUILD"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        ".next-e2e/**",
+        "!.next-e2e/cache/**"
+      ]
+    }
+  }
+}

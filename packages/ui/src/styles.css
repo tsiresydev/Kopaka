@@ -1,0 +1,205 @@
+@import '../../../design-system/kopaka/tokens.css';
+
+:root,
+[data-theme] {
+  --background: var(--color-background);
+  --foreground: var(--color-text);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-on-primary);
+  --muted: var(--color-surface-soft);
+  --muted-foreground: var(--color-text-muted);
+  --border: var(--color-border);
+  --input: var(--color-control);
+  --ring: var(--color-focus);
+  --radius: var(--radius-control);
+}
+.k-button,
+.k-control {
+  min-height: var(--target-min);
+  min-width: var(--target-min);
+  max-width: 100%;
+  border-radius: var(--radius-control);
+  font: inherit;
+  line-height: 1.5;
+}
+.k-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid transparent;
+  font-weight: 600;
+  text-align: center;
+  white-space: normal;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: opacity var(--duration-fast) var(--ease-enter);
+}
+.k-button--primary {
+  background: var(--button-bg);
+  color: var(--button-fg);
+}
+.k-button--primary:hover {
+  background: var(--color-primary-hover);
+}
+.k-button--primary:active {
+  background: var(--color-primary-pressed);
+}
+.k-button--secondary {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: var(--color-control);
+}
+.k-button--secondary:hover,
+.k-button--ghost:hover {
+  background: var(--color-surface-soft);
+}
+.k-button--secondary:active,
+.k-button--ghost:active {
+  opacity: 0.8;
+}
+.k-button--ghost {
+  color: var(--color-primary);
+  background: transparent;
+}
+.k-button:disabled,
+.k-button[aria-disabled='true'] {
+  background: var(--color-disabled);
+  color: var(--color-on-disabled);
+  border-color: transparent;
+  cursor: default;
+}
+.k-button:focus-visible,
+.k-control:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.k-field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.k-label {
+  display: block;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.k-control {
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-control);
+}
+.k-control::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+.k-control:disabled {
+  background: var(--color-disabled);
+  color: var(--color-on-disabled);
+}
+.k-control[aria-invalid='true'] {
+  border-color: var(--color-error);
+  border-width: 2px;
+}
+.k-select {
+  padding-inline-end: var(--space-8);
+  cursor: pointer;
+}
+.k-select:disabled {
+  cursor: default;
+}
+.k-help,
+.k-field-error {
+  margin: 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.k-help {
+  color: var(--color-text-muted);
+}
+.k-field-error {
+  color: var(--color-error);
+}
+.k-card {
+  min-width: 0;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  background: var(--card-bg);
+  color: var(--card-foreground);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card);
+}
+.k-card[data-variant='soft'] {
+  background: var(--color-surface-soft);
+  box-shadow: none;
+}
+.k-card-heading {
+  margin-bottom: var(--space-6);
+}
+.k-card-heading h2,
+.k-card-heading h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--type-h3);
+  line-height: 1.3;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.k-card-heading p {
+  color: var(--color-text-muted);
+  margin: var(--space-2) 0 0;
+}
+.k-status {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--color-surface-soft);
+  color: var(--color-text);
+}
+.k-status-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 1.5rem;
+}
+.k-status strong {
+  font-weight: 600;
+}
+.k-status p {
+  margin: var(--space-1) 0 0;
+  overflow-wrap: anywhere;
+}
+.k-status[data-tone='loading'] {
+  background: var(--color-info-bg);
+  color: var(--color-info);
+}
+.k-status[data-tone='success'] {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+.k-status[data-tone='error'] {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+.k-status[data-tone='disabled'] {
+  background: var(--color-disabled);
+  color: var(--color-on-disabled);
+}
+@media (min-width: 768px) {
+  .k-card {
+    padding: var(--space-6);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .k-button {
+    transition: none;
+  }
+}

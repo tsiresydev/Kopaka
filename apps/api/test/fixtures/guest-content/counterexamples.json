@@ -1,0 +1,23 @@
+{
+  "fixtureOnly": true,
+  "approvedForProduction": false,
+  "approvalReference": "fixture-only:not-owner-approved",
+  "syntheticForbiddenNames": ["TermeTestFR", "TenyAndranaMG"],
+  "reservedVariants": ["Ad_m1n", "Àd-mïn", "A d m i n"],
+  "allowedAgainstThisFixturePolicy": [
+    "Supporter",
+    "Admin123",
+    "Rana Rivo",
+    "Rana1",
+    "Ranai"
+  ],
+  "sameUniqueKey": ["Élo", "E\u0301lo", "elo"],
+  "distinctUniqueKeys": [
+    "Rana1",
+    "Ranai",
+    "Rana-Rivo",
+    "Rana Rivo",
+    "Rana_Rivo"
+  ],
+  "note": "Synthetic entries test whole-string filtering; they do not establish a production vocabulary or cover every prohibited category."
+}

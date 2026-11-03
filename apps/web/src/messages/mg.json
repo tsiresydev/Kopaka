@@ -1,0 +1,58 @@
+{
+  "metadataTitle": "Kopaka — Fototra",
+  "skip": "Hankany amin’ny votoaty",
+  "title": "Pejy fototra",
+  "intro": "Ny fototry ny Kopaka: endrika mora vakina sy fampahafantarana mazava raha azo ampiasaina ny tolotra.",
+  "notice": "Fampisehoana ny fototra ara-teknika. Tsy misy kaonty, lalao na mpilalao foronina.",
+  "language": {
+    "label": "Fiteny",
+    "french": "Français",
+    "malagasy": "Malagasy"
+  },
+  "theme": {
+    "label": "Endrika",
+    "light": "Mazava",
+    "dark": "Maizina",
+    "system": "Araka ny fitaovana"
+  },
+  "service": {
+    "title": "Fahafahana mampiasa ny tolotra",
+    "description": "Hamarininay araka ny fangatahanao ny toetry ny tolotra ankehitriny.",
+    "loading": "Eo am-panamarinana…",
+    "available": "Azo ampiasaina",
+    "unavailable": "Tsy azo ampiasaina",
+    "recovery": "Tsy mamaly araka ny tokony ho izy ny tolotra. Azonao andramana indray.",
+    "retry": "Andramo indray"
+  },
+  "demos": {
+    "title": "Ohatra amin’ireo singa",
+    "description": "Ohatra amin’ny endrika ireo toe-javatra ireo, fa tsy milaza ny tena toetry ny tolotra.",
+    "buttons": "Bokotra",
+    "primary": "Hetsika lehibe",
+    "secondary": "Hetsika fanampiny",
+    "disabled": "Hetsika tsy azo ampiasaina",
+    "fields": "Saha famenoana",
+    "label": "Saha fanandramana",
+    "help": "Soratra malalaka tehirizina mandritra ny fitsidihanao, tsy alefa any amin’ny lohamilina.",
+    "errorLabel": "Saha misy hadisoana",
+    "error": "Ohatra amin’ny hadisoana: hamarino ity sanda ity.",
+    "select": "Safidy",
+    "choice": "Ohatra amin’ny safidy",
+    "placeholder": "Misafidiana ohatra",
+    "option": "Ohatra voalohany",
+    "card": "Karatra",
+    "cardTitle": "Fampahalalana mazava",
+    "cardBody": "Toerana hanehoana votoaty mahasoa.",
+    "states": "Ohatra amin’ny toe-javatra",
+    "loading": "Eo am-pampidirana",
+    "empty": "Tsy misy singa",
+    "failure": "Hadisoana ho ohatra",
+    "success": "Fahombiazana ho ohatra",
+    "inactive": "Toe-javatra tsy azo ampiasaina"
+  },
+  "error": {
+    "title": "Tsy afaka naseho ny pejy",
+    "message": "Nisy hadisoana nitranga. Andramo averina ampidirina ity pejy ity.",
+    "retry": "Andramo indray"
+  }
+}

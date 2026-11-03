@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "fixture-policy-v1",
+  "normalizationVersion": "unicode-17-v1",
+  "reservedNames": [
+    "Admin",
+    "Administrator",
+    "Support",
+    "Kopaka",
+    "System",
+    "Moderator"
+  ],
+  "forbiddenNames": ["TermeTestFR", "TenyAndranaMG"],
+  "approvalReference": "fixture-only:not-owner-approved"
+}

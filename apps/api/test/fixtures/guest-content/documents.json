@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "fixtureOnly": true,
+  "approvedForProduction": false,
+  "documents": [
+    {
+      "type": "conditions",
+      "locale": "fr",
+      "version": "fixture-terms-v1",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Document factice de test. Aucune portée juridique ; ne pas utiliser en production."
+        }
+      ],
+      "sha256": "81e2c6bcc6d2976772aabf407a08dfc1cbd99561cfe608d5911d3542c622ed18",
+      "approvalReference": "fixture-only:not-owner-approved"
+    },
+    {
+      "type": "privacy",
+      "locale": "fr",
+      "version": "fixture-privacy-v1",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Document factice de test. Aucune portée juridique ; ne pas utiliser en production."
+        }
+      ],
+      "sha256": "81e2c6bcc6d2976772aabf407a08dfc1cbd99561cfe608d5911d3542c622ed18",
+      "approvalReference": "fixture-only:not-owner-approved"
+    },
+    {
+      "type": "conditions",
+      "locale": "mg",
+      "version": "fixture-terms-v1",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Antontan-taratasy fitsapana ihany. Tsy antontan-taratasy ara-dalàna ankatoavina."
+        }
+      ],
+      "sha256": "2df816d68eb283e9c59b3da98aba91bf034b6072b822744e4bb780a4b8c824e5",
+      "approvalReference": "fixture-only:not-owner-approved"
+    },
+    {
+      "type": "privacy",
+      "locale": "mg",
+      "version": "fixture-privacy-v1",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Antontan-taratasy fitsapana ihany. Tsy antontan-taratasy ara-dalàna ankatoavina."
+        }
+      ],
+      "sha256": "2df816d68eb283e9c59b3da98aba91bf034b6072b822744e4bb780a4b8c824e5",
+      "approvalReference": "fixture-only:not-owner-approved"
+    }
+  ]
+}
